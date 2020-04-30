@@ -1,0 +1,123 @@
+.app {
+  /* 顶部导航 */
+  .van-nav-bar {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+
+   .van-icon-arrow-left{
+     color:#626262;
+   }
+
+    .van-nav-bar__title {
+      color: #323232;
+      font-size:1.28rem;
+      font-weight: bold;
+    }
+
+    .van-nav-bar__text {
+      color: #fff;
+    }
+    .van-nav-bar__text:active {
+      // background: #34222f;
+    }
+  }
+  .van-nav-bar::after {
+    border: none;
+  }
+
+
+  
+
+
+  /* tabs */
+  .van-tabs__nav {
+    // background: #34222f;
+  }
+  .van-tabs__wrap::after {
+    border: none;
+  }
+  .van-tab {
+    font-size: 1.12rem;
+    color: #565555;
+  }
+  .van-tab--active {
+    font-weight: bold;
+    color: #180579;
+    font-size: 1.2rem;
+  }
+  .van-tabs__line {
+    width: 2.8rem !important;
+    height:.16rem;
+    background: #180579;
+  }
+
+  /* cell */
+  .van-cell {
+    // padding: 10px 0;
+    padding: 0.8rem 1.6rem;
+    align-items: center;
+    color:#172537;
+  }
+
+  .van-cell__title {
+    margin-left: 1.2rem;
+  }
+
+  .van-cell:not(:last-child)::after {
+    // border: none;
+  }
+
+
+
+  /* dialog */
+  .van-dialog {
+    // background-color:#31222d;
+    border-radius: 15px;
+    // z-index: 2014 !important;
+  }
+  .van-dialog__header,
+  .van-dialog__message{
+    color:#000;
+  }
+  .van-dialog__header{
+    font-weight: bold;
+  }
+// .van-dialog__cancel,.van-dialog__confirm{
+//   background:#31222d;
+//   color:#999;
+// }
+
+  .van-dialog__confirm, .van-dialog__confirm:active{
+    color: #2f17ad;
+  }
+
+
+  /* van-popup */
+  .van-popup {
+    padding: 1.6rem;
+    width: 90%;
+  }
+
+  /* van-overlay */
+  .van-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .van-dropdown-item__content{
+    width:100%;
+    border-radius: 0;
+  }
+
+
+  .van-pull-refresh__track{
+    width:100%;
+  }
+
+  
+}
+
+// .van-toast{
+//   z-index:99999 !important;
+// }
