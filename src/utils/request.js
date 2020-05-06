@@ -15,7 +15,8 @@ import { getStore, removeStore } from '@/utils/utils'
 
 // axios 基础配置
 axios.defaults.timeout = 8000
-axios.defaults.baseURL = 'http://134.175.202.70:8080/'
+// axios.defaults.baseURL = 'http://134.175.202.70:8080/'
+axios.defaults.baseURL = 'http://www.fulishijie.top/api/'
 
 // axios.defaults.withCredentials = true
 const reg = /^(http|https)/

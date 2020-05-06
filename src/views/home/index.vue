@@ -1,7 +1,7 @@
 <!-- home_wrap -->
 <template>
   <div class="home_wrap">
-    <van-nav-bar fixed left-text="返回" title="首页" right-text="项目众筹" @click-right="handleNavRight">
+    <van-nav-bar fixed  title="首页" right-text="项目众筹" @click-right="handleNavRight" >
       <img
         slot="left"
         class="home_nav_icon home_nav_left"
@@ -129,7 +129,8 @@ export default {
       });
     },
     handleNavRight() {
-      this.$toast("暂未开放，敬请期待！");
+      this.$router.push('/raise')
+      // this.$toast("暂未开放，敬请期待！");
     },
 
     getHomeData() {

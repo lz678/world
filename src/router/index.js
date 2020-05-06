@@ -214,6 +214,12 @@ export const constantRoutes = [
     component:getComponent('views/advertis_detail/index'),
     meta: { isOpen: true, title: '广告详情' }
   },
+  {
+    path:"/raise",
+    name:'raise',
+    component:getComponent('views/raise/index'),
+    meta: { isOpen: true, title: '众筹' }
+  },
 
 ]
 
