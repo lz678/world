@@ -7,17 +7,23 @@
     </div>
     <div class="content">
       <van-pull-refresh class="contentRefresh" v-model="isLoading" @refresh="onRefresh">
-        <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <van-list
+          class="mylist"
+          v-model="loading"
+          :offset="11"
+          :finished="finished"
+          finished-text="人家也是有底线的"
+          @load="onLoad"
+        >
           <!-- <van-cell v-for="(item,index) in list" :key="index" :title="item.name"> -->
 
           <!-- </van-cell> -->
           <div class="item" v-for="(item,index) in list" :key="index">
             <div class="leftdiv">
               <div class="namediv">{{item.name}}</div>
-              <van-progress :percentage="item.n" stroke-width="10" color="#1CC282" />
-               
+              <van-progress :percentage="item.rate" stroke-width="10" color="#1CC282" />
             </div>
-            <div>{{item.n}}</div>
+            <div class="rightdiv" @click="check(item,index)">查看详情</div>
           </div>
         </van-list>
       </van-pull-refresh>
@@ -35,54 +41,102 @@ export default {
       // 加载更多
       finished: false,
       loading: false,
-
-      list: [
-        { name: "火箭", n: "13" },
-        { name: "火箭", n: "12" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "33" },
-        { name: "火箭", n: "12" },
-        { name: "火箭", n: "30" },
-        { name: "火箭", n: "40" },
-       
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "60" },
-        { name: "火箭", n: "70" },
-        { name: "火箭", n: "80" },
-    
-        { name: "火箭", n: "100" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-   
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" },
-        { name: "火箭", n: "50" }
+      page: 0,
+      size: 10,
+      list: [],
+      mylist: [
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" },
+        { name: "bch" }
       ]
     };
   },
+  filters: {
+    // myrate(a) {
+    //   return toString(a);
+    // }
+  },
   methods: {
     onRefresh() {
-      Toast("刷新成功");
-      this.count++;
+      // Toast("刷新成功");
+      // this.count++;
+      this.page = 1;
       this.isLoading = false;
+      this.getprogect();
     },
     onLoad() {
-      console.log(503121546);
+      // console.log(503121546);
+      this.page += 1;
+       if (this.page != 1) {
+        this.getprogect();
+      }  
+        // this.getprogect();
+      
+      // if (this.page == 1) {
+      //   return;
+      // } else {
+      //   this.getprogect();
+      // }
 
       // 加载状态结束
-      this.loading = false;
-
-      // 数据全部加载完成
-
-      this.finished = true;
-
-      // }, 1000);
+    },
+    check(item, index) {
+      // console.log(item);
+      // console.log(index);
+      this.$router.push({
+        path: "/raiseDetail",
+        query: {
+          id: item.id
+        }
+      });
+    },
+    getprogect() {
+      this.$api
+        .getProgect({
+          page: this.page,
+          size: this.size
+        })
+        .then(data => {
+          this.isLoading = false;
+          this.loading = false;
+          if (data.code === 1) {
+            console.log(data, "项目列表");
+            if (this.page == 1) {
+              this.list = data.data.data;
+            } else {
+              this.list.push(...data.data.data);
+            }
+            if (data.data.total / this.size <= this.page) {
+              this.finished = true;
+            } else {
+              this.finished = false;
+            }
+          }
+        });
     }
+  },
+  created() {
+    this.getprogect();
   }
 };
 </script>
@@ -108,8 +162,13 @@ export default {
 }
 .contentRefresh {
   // height: 86vh;
-  // overflow: scroll;
+  // height: 100%;
+
+  overflow: scroll;
   // border:1px solid red
+}
+.mylist {
+  height: 86vh;
 }
 .content {
   width: 100%;
@@ -122,13 +181,23 @@ export default {
     background-color: #f5f5f5;
     border-bottom: 1px solid #dbdbdb;
     padding: 10px 0px;
-    .leftdiv{
-      width: 40%;
+    .leftdiv {
+      width: 44%;
       .namediv {
-      padding: 6px 6px;
+        // font-family: SourceHanSansCN-Medium;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #313131;
+        padding: 6px 6px;
+      }
     }
+    .rightdiv {
+      padding: 6px 10px;
+      border-radius: 0.375rem;
+      background-color: #18057a;
+      color: white;
+      font-size: 0.875rem;
     }
-     
   }
 }
 </style>

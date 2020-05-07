@@ -32,5 +32,17 @@ export default {
   //获取广告位信息
   getAdvertising(data){
     return axios.post('index/getIndexContent',data)
-  }
+  },
+  getProgect(data){
+    return axios.post('project/getProject',data)
+  },
+  getProgectDetail(data){
+    return axios.get('project/getProjectDetail',{params:data})
+  },
+  hostProgect(data){
+    return axios.post('project/exchange_submit',data)
+  },
+  getmyProgect(data){
+    return axios.post('project/my_stock',data)
+  },
 }

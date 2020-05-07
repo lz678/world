@@ -220,7 +220,18 @@ export const constantRoutes = [
     component:getComponent('views/raise/index'),
     meta: { isOpen: true, title: '众筹' }
   },
-
+  {
+    path:"/raiseDetail",
+    name:'raiseDetail',
+    component:getComponent('views/raiseDetail/index'),
+    meta: { isOpen: true, title: '众筹详情' }
+  },
+  {
+    path:"/myRaise",
+    name:'myRaise',
+    component:getComponent('views/myRaise/index'),
+    meta: { isOpen: true, title: '我的股份' }
+  },
 ]
 
 export const asyncRoutes = []
