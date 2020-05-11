@@ -160,6 +160,8 @@ export default {
   components: { activeAccount },
   data() {
     return {
+      money:'',
+      isPay: 1,
       host: "http://aaed6.ihycc.cn",
       token: "",
       isarrow: "",
@@ -329,9 +331,56 @@ export default {
             this.$toast(data.msg);
           }
         });
+    },
+    // 查看支付状态
+    isAuthPay() {
+      this.$api.isAuthPay().then(data => {
+        if (data.code == 1) {
+          console.log(data, "判断是否已支付！");
+          this.isPay = data.data.is_pay;
+          // this.Authmoney();
+          this.AuthPay();
+        }
+      });
+    },
+    // 认证支付
+    AuthPay() {
+      //  console.log("认证！");
+      if (this.isPay == 0) {
+        this.$dialog.confirm({
+          title: "支付",
+          message: `认证前需要支付${this.money}元人民币！`
+        })
+          .then(() => {
+            // console.log(1111);
+            this.$router.push('/pay')
+            // on confirm
+          })
+          .catch(() => {
+            this.$router.go(-1)
+            // on cancel
+          });
+      }
+    },
+    // 获取认证费用
+    Authmoney(){
+      this.$api.PayMoney().then(
+         data=>{
+            // console.log(data,"认证费用！");
+           if(data.code==1){
+            //  console.log(data,"认证费用！");
+             
+             this.money=data.data
+            //  console.log(this.money);
+             this.isAuthPay();
+           }
+         }
+      )
     }
   },
   created() {
+    this.Authmoney();
+    // this.isAuthPay();
     this.getAuthInfo();
   }
 };

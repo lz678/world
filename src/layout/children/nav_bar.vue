@@ -76,9 +76,11 @@ export default {
 <style lang='scss'>
 .nav_bar {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 4rem;
+  // height: 4rem;
+  height: 8vh;
   text-align: center;
   font-size: 0.96rem;
   background: #fff;
@@ -86,7 +88,9 @@ export default {
   z-index: 2011;
 
   .nav_item {
-    width: 100%;
+    width: 20%;
+    // height: 100%;
+    height: 6vh;
     color: #929292;
   }
 
@@ -96,8 +100,11 @@ export default {
 
   .nav_icon {
     margin: 0 auto;
-    width: 1.76rem;
-    height: 1.76rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    img{
+      width: 100%;
+    }
   }
 
   .nav_title {

@@ -33,15 +33,19 @@ export default {
   getAdvertising(data){
     return axios.post('index/getIndexContent',data)
   },
+  //获取众筹列表
   getProgect(data){
     return axios.post('project/getProject',data)
   },
+  //众筹详情
   getProgectDetail(data){
     return axios.get('project/getProjectDetail',{params:data})
   },
+  // 兑换众筹
   hostProgect(data){
     return axios.post('project/exchange_submit',data)
   },
+  // 获取自己的众筹项目
   getmyProgect(data){
     return axios.post('project/my_stock',data)
   },

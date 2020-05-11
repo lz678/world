@@ -96,4 +96,16 @@ export default {
   postActiveCoin: data => {
     return axios.post('user/actUnIntegral', data)
   },
+  // 判断是否已支付
+  isAuthPay: data => {
+    return axios.post('project/is_pay', data)
+  },
+  // 支付
+  Pay: data => {
+    return axios.post('Alipay/pay_auth', data)
+  },
+  // 支付金额
+  PayMoney: data => {
+    return axios.post('alipay/get_fee', data)
+  },
 }

@@ -22,43 +22,60 @@ import { Toast } from "vant";
 export default {
   data() {
     return {
-      page: 1,
-      size:10,
+      page: 0,
+      size: 10,
       isLoading: false,
       // 加载更多
       finished: false,
       loading: false,
       name: "电冰箱",
       value: "",
-      list:''
+      list: ""
     };
   },
   methods: {
     onRefresh() {
-      Toast("刷新成功");
-      this.count++;
+      // Toast("刷新成功");
+      this.page = 1;
+      this.getmyProgect();
       this.isLoading = false;
     },
     onLoad() {
       // 加载状态结束
-      this.loading = false;
-    //   this.finished = true;
+      this.page += 1;
+      this.getmyProgect();
+      // this.loading = false;
+      //   this.finished = true;
     },
-    getmyProgect(){
-      this.$api.getmyProgect({
-        page:this.page,
-        size:this.size
-      }).then(data=>{
-        if(data.code===1){
-          console.log(data,"我的股权");
-          this.list=data.data.data
-        }
-      })
+    getmyProgect() {
+      this.$api
+        .getmyProgect({
+          page: this.page,
+          size: this.size
+        })
+        .then(data => {
+          this.isLoading = false;
+          this.loading = false;
+
+          if (data.code === 1) {
+            console.log(data, "我的股权");
+            if (this.page == 1) {
+              this.list = data.data.data;
+            } else {
+              this.list.push(...data.data.data);
+            }
+            if (data.data.total / this.size <= this.page) {
+              this.finished = true;
+            } else {
+              this.finished = false;
+            }
+          }
+        });
     }
   },
   created() {
-    this.getmyProgect()
-  },
+    // this.getmyProgect();
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -76,7 +93,7 @@ export default {
 }
 .content {
   height: 86vh;
-//   border: 1px solid red;
+  //   border: 1px solid red;
 }
 .item {
   display: flex;

@@ -33,7 +33,7 @@ export const constantRoutes = [
   {
     path: '/',
     name: '',
-    redirect: '/layout/me',
+    redirect: '/layout/home',
     component: getComponent('layout/index'),
     meta: { isOpen: true, title: '我的' }
   },
@@ -42,7 +42,7 @@ export const constantRoutes = [
   {
     path: '/layout',
     name: 'layout',
-    redirect: '/layout/me',
+    // redirect: '/layout/me',
     component: getComponent('layout/index'),
     children: [
       {
@@ -61,8 +61,9 @@ export const constantRoutes = [
         path: 'mall',
         name: 'mall',
         component: getComponent('views/mall/index'),
-        meta: { isOpen: false, title: '商城' }
+        meta: { isOpen: true, title: '商城' }
       },
+      
       {
         path: 'college',
         name: 'college',
@@ -231,6 +232,24 @@ export const constantRoutes = [
     name:'myRaise',
     component:getComponent('views/myRaise/index'),
     meta: { isOpen: true, title: '我的股份' }
+  },
+  {
+    path: '/mallDetail',
+    name: 'mallDetail',
+    component: getComponent('views/mallDetail/index'),
+    meta: { isOpen: true, title: '商品详情' }
+  },
+  {
+    path: '/pay',
+    name: 'pay',
+    component: getComponent('views/pay/index'),
+    meta: { isOpen: true, title: '支付' }
+  },
+  {
+    path: '/payHistorty',
+    name: 'payHistorty',
+    component: getComponent('views/myBuyHistory/index'),
+    meta: { isOpen: true, title: '购买记录' }
   },
 ]
 

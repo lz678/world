@@ -36,7 +36,7 @@ import { Toast } from "vant";
 export default {
   data() {
     return {
-      count: 0,
+      
       isLoading: false,
       // 加载更多
       finished: false,
@@ -81,16 +81,19 @@ export default {
       // Toast("刷新成功");
       // this.count++;
       this.page = 1;
-      this.isLoading = false;
       this.getprogect();
+      this.isLoading = false;
+       
     },
     onLoad() {
       // console.log(503121546);
       this.page += 1;
-       if (this.page != 1) {
+      console.log("加载更多");
+      
+      //  if (this.page != 1) {
+      //   this.getprogect();
+      // }  
         this.getprogect();
-      }  
-        // this.getprogect();
       
       // if (this.page == 1) {
       //   return;
@@ -136,7 +139,7 @@ export default {
     }
   },
   created() {
-    this.getprogect();
+    // this.getprogect();
   }
 };
 </script>

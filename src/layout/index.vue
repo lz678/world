@@ -27,10 +27,11 @@ export default {
 
 <style lang='scss'>
 .layout {
-  height: 100%;
+  height: 100vh;
   .container {
     // width:100%;
-    height: calc(100% - 4rem);
+    // height: calc(100% - 4rem);
+    height: 92vh;
     overflow: auto;
     // z-index: ;
   }
